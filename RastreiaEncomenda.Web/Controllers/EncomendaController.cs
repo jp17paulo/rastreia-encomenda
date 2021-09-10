@@ -11,7 +11,8 @@ namespace RastreiaEncomenda.Web.Controllers
         public async Task<IActionResult> ObtemInformacao()
         {
             return Ok(new {
-                Codigo = "ON4676363876BR"                
+                Codigo = "ON4676363876BR",
+                Sro = "Objeto Entregue ao Destinatário"
             });
         }
     }
