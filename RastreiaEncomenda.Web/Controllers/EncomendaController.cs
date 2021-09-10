@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace RastreiaEncomenda.Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
     public class EncomendaController : ControllerBase
     {
         [HttpGet]
+        [Route("api/[controller]")]
         public async Task<IActionResult> ObtemInformacao()
         {
             return Ok(new {
