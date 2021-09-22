@@ -2,9 +2,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System.Collections.Generic;
-using HtmlAgilityPack;
+using RastreiaEncomenda.Web.Servicos.Interfaces;
 
 namespace RastreiaEncomenda.Web.Controllers
 {
@@ -12,9 +10,24 @@ namespace RastreiaEncomenda.Web.Controllers
     [ApiController]
     public class EncomendaController : ControllerBase
     {
+        public readonly IEncomendaServico _encomendaServico;
+
+        public EncomendaController(IEncomendaServico encomendaServico)
+        {
+            _encomendaServico = encomendaServico;
+        }
+
+        [HttpGet]
+        [Route("api/v2/[controller]")]
+        public async Task<IActionResult> ConsultaStatusEncomenda(string codigo)
+        {
+            var resultado = await _encomendaServico.ObtemStatusEncomenda(codigo);
+            return Ok(resultado);
+        }
+
+        //api/encomenda?codigo=OP862398045BR
         [HttpGet]
         [Route("api/[controller]")]
-                                         //api/encomenda?codigo=OP862398045BR
         public async Task<IActionResult> ObtemInformacao(string codigo)
         {
             string url = "https://www2.correios.com.br/sistemas/rastreamento/default.cfm";
