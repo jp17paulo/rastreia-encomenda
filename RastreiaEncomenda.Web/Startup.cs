@@ -22,8 +22,8 @@ namespace RastreiaEncomenda.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // usar um ou outro serviço, nunca os dois ao mesmo tempo
-            // services.AddScoped<IEncomendaServico, EncomendaServicoPlaywright>();
-            services.AddScoped<IEncomendaServico, EncomendaServicoSelenium>();
+            services.AddScoped<IEncomendaServico, EncomendaServicoPlaywright>();
+            // services.AddScoped<IEncomendaServico, EncomendaServicoSelenium>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
