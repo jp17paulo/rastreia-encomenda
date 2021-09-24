@@ -48,7 +48,7 @@
 
             methods: {
                 async obtemStatusEncomenda() {
-                    let response = await fetch(`https://localhost:5001/api/v2/encomenda?codigo=${this.codigoDeRastreio}`)
+                    let response = await fetch(`/api/v2/encomenda?codigo=${this.codigoDeRastreio}`)
                     this.statusEncomenda = await response.json()
                 }
             }

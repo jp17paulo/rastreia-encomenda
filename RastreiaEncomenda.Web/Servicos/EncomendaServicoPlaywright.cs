@@ -14,7 +14,7 @@ namespace RastreiaEncomenda.Web.Servicos
             // var page = await browser.NewPageAsync();
             // await page.GotoAsync("https://rspiolirf.netlify.com");
             // await page.ScreenshotAsync(new PageScreenshotOptions { Path = "screenshot.png" });
-
+            await Task.Delay(1);
             return new ConsultaStatusEncomendaViewModel(codigo, "Entregue via Playwright");
         }
     }
