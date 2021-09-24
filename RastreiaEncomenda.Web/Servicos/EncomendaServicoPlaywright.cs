@@ -9,13 +9,13 @@ namespace RastreiaEncomenda.Web.Servicos
     {
         public async Task<ConsultaStatusEncomendaViewModel> ObtemStatusEncomenda(string codigo)
         {
-            using var playwright = await Playwright.CreateAsync();
-            await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
-            var page = await browser.NewPageAsync();
-            await page.GotoAsync("https://rspiolirf.netlify.com");
-            await page.ScreenshotAsync(new PageScreenshotOptions { Path = "screenshot.png" });
+            // using var playwright = await Playwright.CreateAsync();
+            // await using var browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
+            // var page = await browser.NewPageAsync();
+            // await page.GotoAsync("https://rspiolirf.netlify.com");
+            // await page.ScreenshotAsync(new PageScreenshotOptions { Path = "screenshot.png" });
 
-            return new ConsultaStatusEncomendaViewModel("ON77334347", "Entregue via Playwright");
+            return new ConsultaStatusEncomendaViewModel(codigo, "Entregue via Playwright");
         }
     }
 }
