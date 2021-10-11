@@ -9,32 +9,50 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://unpkg.com/vue@next"></script>
 </head>
-<body>
-    <div id="app" class="container">
+<body style="background-color: #1e1e28;">
+    <div id="app" class="container" style=" background-image: url(background.jpg); background-blend-mode: lighten;">
         <div class="row align-items-center">
-            <div class="col-4 mx-auto mt-5">
+            <div class="col mx-auto mt-5">
 
                 <div class="row">
                     <div class="col">
-                        <p>Insira aqui o código de rastreio da encomenda</p>
+                        <h1 class="text-light text-center">Bem vindo ao site <span class="text-warning">RASTREIA ENCOMENDA</span></h1>
+                    </div>
+                </div>
+
+                <div class="row mt-4 mx-2">
+                    <div class="col">
+                        <h2 class="text-light text-center">Insira aqui o código de rastreio dos Correios...</h2>
+                        <h2 class="text-warning text-center">{{ mensagemPainel }}</h2>
                     </div>
                 </div>
                 
-                <div class="row">
-                    <div class="col">
-                        <input type="text" v-model="codigoDeRastreio" class="form-control mb-3" id="codigoDeRastreio" placeholder="OP862398045BR">
+                <div class="row mt-5 mx-2 justify-content-center">
+                    <div class="col-lg-4 text-center text-lg-end">
+                        <input type="text" v-model="codigoDeRastreio" class="form-control form-control-lg mb-3" id="codigoDeRastreio" placeholder="OP862398045BR">
                     </div>
-                    <div class="col">
-                        <button @click="obtemStatusEncomenda" type="button" class="btn btn-primary">Consultar</button>
+                    <div class="col-lg-2 text-center text-lg-start">
+                        <button @click="obtemStatusEncomenda" type="button" class="btn btn-warning btn-lg">Consultar</button>
                     </div>
                 </div>
 
-                <div class="row mt-5" v-if="statusEncomenda">
-                    <div class="col">
-                        <p>Código: {{ statusEncomenda.codigo }}</p>
-                        <p>Status: {{ statusEncomenda.status }}</p>
+                <div class="row mt-5 mx-1 text-light justify-content-center" v-if="statusEncomenda">
+                    <div class="col-lg-8">
+                        <table class="table" style="background-color: #242430;">
+                            <tbody class="text-light">
+                                <tr>
+                                    <td>Código: {{ statusEncomenda.codigo }}</td>
+                                    <td>Status: {{ statusEncomenda.status }}</td>
+                                </tr>
+                                <tr v-for="(item, index) in mensagens" :key="index">
+                                    <td>Código: {{ statusEncomenda.codigo }}</td>
+                                    <td>Status: {{ statusEncomenda.status }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -43,14 +61,29 @@
             data() {
                 return {
                     codigoDeRastreio: 'OP862398045BR',
-                    statusEncomenda: null
+                    statusEncomenda: null,
+                    mensagens: ['para o seu pacote', 'para o seu presente', 'para a sua encomenda', 'para o seu brinquedo'],
+                    mensagemPainel: '',
+                    posicaoArray: 1
                 }
+            },
+
+
+            mounted() {
+                this.mensagemPainel = this.mensagens[0]
+                setInterval(this.alteraTextoEncomenda, 2000)
             },
 
             methods: {
                 async obtemStatusEncomenda() {
                     let response = await fetch(`/api/v2/encomenda?codigo=${this.codigoDeRastreio}`)
                     this.statusEncomenda = await response.json()
+                },
+
+                alteraTextoEncomenda() {
+                    this.mensagemPainel = this.mensagens[this.posicaoArray]
+                    this.posicaoArray++
+                    if (this.posicaoArray === this.mensagens.length) this.posicaoArray = 0
                 }
             }
         }
