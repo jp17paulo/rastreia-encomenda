@@ -30,7 +30,7 @@ namespace RastreiaEncomenda.Web.Servicos
             await page.ClickAsync("textarea[name=\"objetos\"]");
 
             // Fill textarea[name="objetos"]
-            await page.FillAsync("textarea[name=\"objetos\"]", "OP862398045BR");
+            await page.FillAsync("textarea[name=\"objetos\"]", codigo);
 
             // Click text=Buscar
             await page.ClickAsync("text=Buscar");
