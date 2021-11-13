@@ -2,7 +2,7 @@
 
 A finalidade do projeto é fazer uma consulta utilizando o web scraping
 
-## Technology 
+## Tecnologias
 
 Aqui estão as tecnologias usadas neste projeto.
 
@@ -11,7 +11,7 @@ Aqui estão as tecnologias usadas neste projeto.
 * Playwright
 * Vue.js
 
-## Services Used
+## Serviços usados
 
 * Github
 * Heroku
