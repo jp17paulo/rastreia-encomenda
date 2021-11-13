@@ -1,6 +1,6 @@
 # rastreia-encomenda
 
-A finalidade do projeto é fazer uma consulta utilizando o web scraping
+A finalidade do projeto é fazer uma consulta no site dos Correios, passando como parametro um código de rastreio, utilizando o web scraping e retornar informações sobre o status da encomenda.
 
 ## Tecnologias
 
